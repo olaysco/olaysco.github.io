@@ -1,5 +1,7 @@
 name: Deploy to GitHub Pages
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   repository_dispatch:
     types: [portfolio-updated]
@@ -25,6 +27,8 @@ jobs:
         with:
           node-version: 20
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: yarn install --frozen-lockfile
       - run: yarn generate
         env:
